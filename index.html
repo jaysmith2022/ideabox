@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
@@ -8,40 +11,33 @@
         <title>IdeaBox</title>
     </head>
     <body>
-        <section class="side-bar">
-            <article class="side-header">
-                <h1>IdeaBox</h1>
-            </article>
-            <article class="side-star">
-                <h3>Filter Starred Ideas</h3>
-                <button>Show Starred Ideas</button>
-            </article>
-        </section>
+            <section class="side-bar">
+                <article class="side-header">
+                    <h1>IdeaBox</h1>
+                </article>
+                <article class="side-star">
+                    <h4>Filter Starred Ideas</h3>
+                    <button class="star-button">Show Starred Ideas</button>
+                </article>
+            </section>
         <main class="main-page">
             <section class="top-container">
                 <form class="save-form">
-                    <label></label>
-                    <input>
-                    <label></label>
-                    <input>
-                    <button>Save</button>
+                    <label class="title-label">Title</label>
+                    <input class="title-box">
+                    <label class="body-label">Body</label>
+                    <input class="body-box">
+                    <button class="save-button">Save</button>
                 </form>
                 <form class="search-form">
-                    <button></button>
-                    <input>
+                    <button type='search' class='search-button'><img src='assets/search.svg' /></button>
+                    <input class="search-box">
                 </form>
             </section>
             <section class="bottom-container"> 
-                <article class="saved-idea">
-                    <header class="top-header">
-                        <img>
-                        <img>
-                    </header>
-                    <h2></h2>
-                    <p></p>
-                </article>
             </section>
         </main>
+        <script src="Idea.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
