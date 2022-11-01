@@ -1,0 +1,234 @@
+html {
+    height: 100%;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.side-bar {
+    background-color: #1F1F3D;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 25%;
+    align-items: flex-start;
+}
+
+.main-page {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-container {
+    width: -webkit-fill-available;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #A9AAD2;
+    border-left: 2px solid #EAEAF4;
+}
+
+.bottom-container {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 55%;
+    background-color: #EAEAF4;
+    padding: 20px;
+}
+
+.side-header {
+    width: -webkit-fill-available;
+    border-bottom: 2px solid #353567;
+}
+.side-star {
+    height: 150px;
+    width: -webkit-fill-available;
+    border-bottom: 2px solid #353567;
+    color: #BFBFDD;
+}
+
+h1, h3 {
+    padding-left: 20px;
+}
+
+h1 {
+    color: #E9E9F3;
+    height: 30px;
+    margin-top: 40px;
+}
+
+h4 {
+    padding-left: 20px;
+}
+
+.star-button {
+    margin-left: 20px;
+    background-color: #5356a4;
+    color: #E9E9F3;
+    border: 3px solid #5356A4;
+    width: -webkit-fill-available;
+    height: 40px;
+    font-weight: bold;
+    margin-right: 20px;
+    font-size: large;
+    border-radius: 1px;
+}
+
+.save-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title-box {
+    width: 500px;
+    height: 50px;
+    border: 2px solid #5356A4;
+}
+
+.body-box {
+    width: 500px; 
+    height: 100px;
+    margin-bottom: 20px;
+    border: 2px solid #5356A4;
+}
+
+.body-label {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 500px;
+    font-weight: bold;
+}
+
+.title-label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.save-button {
+    width: -webkit-fill-available;
+    margin-bottom: 20px;
+    height: 40px;
+    font-weight: bold;
+    background-color: #1F1F3D;
+    color: #E9E9F3;
+    font-size: x-large;
+    border: 2px solid #5356A4;
+}
+
+.search-form {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-box {
+    width: 446px;
+    height: 40px;
+    border: 2px solid #5356A4;
+}
+
+.search-button {
+    height: -webkit-fill-available;
+    width: 53px;
+    background-color: #1F1F3D;;
+}
+
+.saved-idea {
+    background-color: #FFFFFF;
+    height: 250px;
+    width: 250px;
+    border: 2px solid #1F1F3D;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top-header {
+    height: 30px;
+    background-color: #1F1F3D;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.delete-image, 
+.favorite-image {
+    height: inherit;
+}
+
+h2 {
+    padding-left: 10px;
+    color: #1F1F3D;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+p {
+    padding: 10px;
+    color: #1F1F3D;
+    margin-bottom: 0;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.delete-button, 
+.starred-button {
+        width: 35px;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-color: #1F1F3D;
+        border: 0;
+}
+
+.footer-container {
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #5356A4;
+    color: #E9E9F3;
+    font-size: medium;
+    font-weight: bold;
+    border-top: 2px solid #1F1F3D;
+}
+
+.comment-button img {
+    width: 30px;
+} 
+
+.comment-button {
+    margin-right: 5px;
+    width: 30px;
+    background-color: #5356A4;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
