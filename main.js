@@ -29,6 +29,8 @@ function saveIdea(title, body) {
         </footer>
         </article>`;
         savedIdeaList.push(currentIdea);
+        titleInput.value = '';
+        bodyInput.value = '';
     }
 }
 
