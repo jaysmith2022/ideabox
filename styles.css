@@ -42,8 +42,9 @@ body {
 .bottom-container {
     width: -webkit-fill-available;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
     height: 55%;
     background-color: #EAEAF4;
     padding: 20px;
@@ -127,6 +128,12 @@ h4 {
     color: #E9E9F3;
     font-size: x-large;
     border: 2px solid #5356A4;
+    cursor: pointer;
+}
+
+.save-button[disabled]:hover {
+    cursor: default;
+    background-color: #5356a4;
 }
 
 .search-form {
@@ -152,7 +159,7 @@ h4 {
 .saved-idea {
     background-color: #FFFFFF;
     height: 250px;
-    width: 250px;
+    width: 225px;
     border: 2px solid #1F1F3D;
     display: flex;
     flex-direction: column;

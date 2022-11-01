@@ -2,19 +2,29 @@ var saveButton = document.getElementById('save-button');
 var titleInput = document.getElementById('title-box');
 var bodyInput = document.getElementById('body-box');
 var ideaContainer = document.getElementById('bottom-container');
+var saveForm = document.getElementById('save-form');
 
 var currentIdea;
 var savedIdeaList = [];
 
 
+saveForm.addEventListener('mouseover', checkForValues);
 saveButton.addEventListener('click', function(event){
     event.preventDefault();
     saveIdea(titleInput.value, bodyInput.value);
 })
 
+function checkForValues(evt) {
+    if (evt.target.className === 'save-form'){
+        if(titleInput.value && bodyInput.value){
+            saveButton.removeAttribute('disabled');
+        } else {
+            saveButton.setAttribute('disabled', '');
+        }
+    }
+}
 
 function saveIdea(title, body) {
-    if(titleInput.value && bodyInput.value){
         currentIdea = new Idea(title, body);
         ideaContainer.innerHTML += `<article class="saved-idea">
         <header class="top-header">
@@ -31,7 +41,7 @@ function saveIdea(title, body) {
         savedIdeaList.push(currentIdea);
         titleInput.value = '';
         bodyInput.value = '';
-    }
+        saveButton.setAttribute('disabled', '');
 }
 
 
