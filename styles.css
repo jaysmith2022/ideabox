@@ -43,7 +43,7 @@ body {
     width: -webkit-fill-available;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     height: 55%;
     background-color: #EAEAF4;
@@ -75,7 +75,8 @@ h4 {
     padding-left: 20px;
 }
 
-.star-button {
+.star-button, 
+.show-all {
     margin-left: 20px;
     background-color: #5356a4;
     color: #E9E9F3;
@@ -164,6 +165,7 @@ h4 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-right: 20px;
 }
 
 .top-header {
