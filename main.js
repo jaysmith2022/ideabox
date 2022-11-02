@@ -40,7 +40,7 @@ function createNewIdea() {
 function displayCard(event) {
     event.preventDefault()
     createNewIdea()
-    saveIdea(savedIdeaList)
+    loadIdeas()
     titleInput.value = ''
     bodyInput.value = ''
     checkForValues(event)
@@ -67,33 +67,38 @@ function saveIdea(ideas) {
     }
 }
 
+function loadIdeas() {
+    if (starredButton.innerText === 'Show Starred Ideas'){
+        saveIdea(savedIdeaList);
+    } else {
+        saveIdea(favoriteIdeas);
+    }
+}
+
 function deleteFavorite(event) {
     for (var i = 0; i < favoriteIdeas.length; i++) {
         if (favoriteIdeas[i].id === parseInt(event.target.id)) {
             favoriteIdeas.splice(i,1)
-            saveIdea(savedIdeaList)
         }
     }
+   loadIdeas();
 }
 
 function deleteIdea(event) {
     for (var i = 0;i < savedIdeaList.length;i++) {
         if (savedIdeaList[i].id === parseInt(event.target.id)) {
             savedIdeaList.splice(i,1)
-            saveIdea(savedIdeaList)
         }
     }
-
+    
     for (var i = 0; i < favoriteIdeas.length; i++) {
         if (favoriteIdeas[i].id === parseInt(event.target.id)) {
             favoriteIdeas.splice(i,1)
-            saveIdea(savedIdeaList)
         }
     }
-}
 
-// Two issues.  1 - Need to prevent duplicates  
-//              2 - Need to be able to remove a favorite
+    loadIdeas();
+}
 
 function updateStar(event) {
     for(var i = 0; i < savedIdeaList.length;i++) {
@@ -101,16 +106,15 @@ function updateStar(event) {
             if(savedIdeaList[i].star){
                 savedIdeaList[i].star = !savedIdeaList[i].star
                 deleteFavorite(event)
-                saveIdea(savedIdeaList)
             } else {
                 savedIdeaList[i].star = !savedIdeaList[i].star
-                saveIdea(savedIdeaList)
                 if (!favoriteIdeas.includes(savedIdeaList[i])){
                     favoriteIdeas.push(savedIdeaList[i])
                 }
             }
         }
     }
+    loadIdeas();
 }
 
 function updateIdea(event) {
@@ -122,22 +126,16 @@ function updateIdea(event) {
     }
 }
 
-
 function saveStarred(event) {
     event.preventDefault()
     if (starredButton.innerText === 'Show Starred Ideas'){
         starredButton.innerText = 'Show All Ideas'
-        // starredButton.className = " show-all" 
-        saveIdea(favoriteIdeas);
     } else {
         starredButton.innerText = 'Show Starred Ideas'
-        saveIdea(savedIdeaList);
     }
-    
+    loadIdeas()
 }
 
-// function showAll() {
-// }
 
 
 {/* 
