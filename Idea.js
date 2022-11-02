@@ -5,4 +5,12 @@ class Idea {
         this.body = body;
         this.star = false;
     }
+
+    updateIdea() {
+       if (this.star === true) {
+            return "./assets/star-active.svg"
+        } else {
+            return "./assets/star.svg"
+        } 
+    }
 }

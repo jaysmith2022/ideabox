@@ -8,18 +8,17 @@ var showAllButton = document.getElementsByClassName('show-all')
 
 var currentIdea;
 var savedIdeaList = []
-var favorite = []
-var nonFavorite = []
+var favoriteIdeas = []
+
 
 
 saveForm.addEventListener('mouseover', checkForValues);
 saveButton.addEventListener('click', displayCard)
 ideaContainer.addEventListener('click', updateIdea)
 starredButton.addEventListener('click', saveStarred)
-starredButton.addEventListener('click', function (event) {
-    saveStarred(), showAll()
-})
-
+// starredButton.addEventListener('click', function (event) {
+//     saveStarred(), showAll()
+// })
 
 
 function checkForValues(event) {
@@ -35,59 +34,81 @@ function checkForValues(event) {
 function createNewIdea() {
     var currentIdea = new Idea(titleInput.value, bodyInput.value);
     savedIdeaList.push(currentIdea)
-    return currentIdea
+    // return currentIdea
 }
 
 function displayCard(event) {
     event.preventDefault()
-    var newDisplay = createNewIdea()
-    saveIdea(newDisplay)
+    createNewIdea()
+    saveIdea(savedIdeaList)
     titleInput.value = ''
     bodyInput.value = ''
     checkForValues(event)
 }
 
-
-function saveIdea() {
-        var updatedStar = ''
-        ideaContainer.innerHTML = ""
-        for (var i = 0; i < savedIdeaList.length;i++) {
-        if (savedIdeaList[i].star === true) {
-            updatedStar = "./assets/star-active.svg"
-        } else {
-            updatedStar = "./assets/star.svg"
-        }
+function saveIdea(ideas) {
+    ideaContainer.innerHTML = ""
+    for (var i = 0; i < ideas.length;i++) {
+        var updatedStar = ideas[i].updateIdea();
+    
         ideaContainer.innerHTML += `<article class="saved-idea">
         <header class="top-header">
-        <button class='starred-button' ${savedIdeaList[i].star}'><img class="starred-button" id='${savedIdeaList[i].id}' src="${updatedStar}" /></button>
-        <button class='delete-button' id='${savedIdeaList[i].id}'><img class='delete-button' id='${savedIdeaList[i].id}' src='assets/delete.svg' /></button>
+        <button class='starred-button' ${ideas[i].star}'><img class="starred-button" id='${ideas[i].id}' src="${updatedStar}" /></button>
+        <button class='delete-button' id='${ideas[i].id}'><img class='delete-button' id='${ideas[i].id}' src='assets/delete.svg' /></button>
         </header>
-        <h2>${savedIdeaList[i].title}</h2>
-        <p>${savedIdeaList[i].body}</p>
+        <h2>${ideas[i].title}</h2>
+        <p>${ideas[i].body}</p>
         <footer class="footer-container">
         <button class="comment-button"><img src="assets/comment.svg" /></button>
         <label class="label-text">Comment</label>
         </footer>
         </article><br>`
         saveButton.setAttribute('disabled', '')
-
+    }
 }
+
+function deleteFavorite(event) {
+    for (var i = 0; i < favoriteIdeas.length; i++) {
+        if (favoriteIdeas[i].id === parseInt(event.target.id)) {
+            favoriteIdeas.splice(i,1)
+            saveIdea(savedIdeaList)
+        }
+    }
 }
 
 function deleteIdea(event) {
     for (var i = 0;i < savedIdeaList.length;i++) {
         if (savedIdeaList[i].id === parseInt(event.target.id)) {
             savedIdeaList.splice(i,1)
-            saveIdea()
+            saveIdea(savedIdeaList)
+        }
+    }
+
+    for (var i = 0; i < favoriteIdeas.length; i++) {
+        if (favoriteIdeas[i].id === parseInt(event.target.id)) {
+            favoriteIdeas.splice(i,1)
+            saveIdea(savedIdeaList)
         }
     }
 }
 
+// Two issues.  1 - Need to prevent duplicates  
+//              2 - Need to be able to remove a favorite
+
 function updateStar(event) {
     for(var i = 0; i < savedIdeaList.length;i++) {
         if (savedIdeaList[i].id === parseInt(event.target.id)) {
-            savedIdeaList[i].star = !savedIdeaList[i].star
-            saveIdea()
+            if(savedIdeaList[i].star){
+                savedIdeaList[i].star = !savedIdeaList[i].star
+                deleteFavorite(event)
+                saveIdea(savedIdeaList)
+            } else {
+                savedIdeaList[i].star = !savedIdeaList[i].star
+                saveIdea(savedIdeaList)
+                if (!favoriteIdeas.includes(savedIdeaList[i])){
+                    favoriteIdeas.push(savedIdeaList[i])
+                }
+            }
         }
     }
 }
@@ -104,14 +125,15 @@ function updateIdea(event) {
 
 function saveStarred(event) {
     event.preventDefault()
-    starredButton.innerText = 'Show All Ideas'
-    starredButton.className = " show-all"
-    for (var i = 0; i < savedIdeaList.length;i++) {
-        if (savedIdeaList[i].star === false) {
-            savedIdeaList.splice(i, 1)
-        }    
-        saveIdea()
-}
+    if (starredButton.innerText === 'Show Starred Ideas'){
+        starredButton.innerText = 'Show All Ideas'
+        // starredButton.className = " show-all" 
+        saveIdea(favoriteIdeas);
+    } else {
+        starredButton.innerText = 'Show Starred Ideas'
+        saveIdea(savedIdeaList);
+    }
+    
 }
 
 // function showAll() {
