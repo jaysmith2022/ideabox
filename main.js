@@ -138,17 +138,20 @@ function saveStarred(event) {
 
 function searchBar(event) {
     event.preventDefault()
-    var value = event.target.value
+    var value = event.target.value.toLowerCase()
     searchIdeas = []
     for(var i = 0; i < savedIdeaList.length;i++) {
-        var newTitle = savedIdeaList[i].title
-        // var newBody = savedIdeaList[i].body
-    if (newTitle.toLowerCase().includes(value) && !searchIdeas.includes(savedIdeaList[i]) && searchBox.value) {
-        searchIdeas.push(savedIdeaList[i])
-}   else if (!searchBox.value) {
-        searchIdeas = []
-}
-}
+        var newTitle = savedIdeaList[i].title.toLowerCase()
+        var newBody = savedIdeaList[i].body.toLowerCase()
+        if(!searchIdeas.includes(savedIdeaList[i]) && searchBox.value){
+            if (newTitle.includes(value) || newBody.includes(value)) {
+                searchIdeas.push(savedIdeaList[i])
+            }   else if (!searchBox.value) {
+                searchIdeas = []
+            }
+
+        }
+    }
     if (searchIdeas.length > 0) {
         saveIdea(searchIdeas)  
         console.log('1')
