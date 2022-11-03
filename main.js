@@ -7,7 +7,7 @@ var starredButton = document.getElementById('star-button')
 var showAllButton = document.getElementsByClassName('show-all')
 var searchBox = document.querySelector('.search-box')
 
-var currentIdea;
+var currentIdea
 var savedIdeaList = []
 var favoriteIdeas = []
 var searchIdeas = []
@@ -96,7 +96,6 @@ function deleteIdea(event) {
             favoriteIdeas.splice(i,1)
         }
     }
-
     loadIdeas();
 }
 
@@ -128,6 +127,7 @@ function updateIdea(event) {
 
 function saveStarred(event) {
     event.preventDefault()
+    searchBox.value = ""
     if (starredButton.innerText === 'Show Starred Ideas'){
         starredButton.innerText = 'Show All Ideas'
     } else {
@@ -140,23 +140,29 @@ function searchBar(event) {
     event.preventDefault()
     var value = event.target.value.toLowerCase()
     searchIdeas = []
-    for(var i = 0; i < savedIdeaList.length;i++) {
-        var newTitle = savedIdeaList[i].title.toLowerCase()
-        var newBody = savedIdeaList[i].body.toLowerCase()
-        if(!searchIdeas.includes(savedIdeaList[i]) && searchBox.value){
+    var currentList = [];
+    if (starredButton.innerText === 'Show Starred Ideas'){
+        currentList = savedIdeaList;
+    } else {
+        currentList = favoriteIdeas;
+    }
+    
+    for(var i = 0; i < currentList.length;i++) {
+        var newTitle = currentList[i].title.toLowerCase()
+        var newBody = currentList[i].body.toLowerCase()
+        if(!searchIdeas.includes(currentList[i]) && searchBox.value){
             if (newTitle.includes(value) || newBody.includes(value)) {
-                searchIdeas.push(savedIdeaList[i])
-            }   else if (!searchBox.value) {
-                searchIdeas = []
-            }
-
+                searchIdeas.push(currentList[i])
+            }   
         }
     }
-    if (searchIdeas.length > 0) {
+    
+    if (searchBox.value && !searchIdeas.length) {
         saveIdea(searchIdeas)  
-        console.log('1')
+    } else if (searchIdeas.length > 0){
+        saveIdea(searchIdeas)
     } else {
         loadIdeas()
-        console.log('2')
     }
+    
 }
