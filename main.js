@@ -4,24 +4,19 @@ var bodyInput = document.getElementById('body-box')
 var ideaContainer = document.getElementById('bottom-container')
 var saveForm = document.getElementById('save-form')
 var starredButton = document.getElementById('star-button')
-var showAllButton = document.getElementsByClassName('show-all')
 var searchBox = document.querySelector('.search-box')
 
 var currentIdea
 var savedIdeaList = []
 var favoriteIdeas = []
 var searchIdeas = []
-
+var currentList = []
 
 searchBox.addEventListener('input', searchBar)
 saveForm.addEventListener('mouseover', checkForValues);
 saveButton.addEventListener('click', displayCard)
 ideaContainer.addEventListener('click', updateIdea)
 starredButton.addEventListener('click', saveStarred)
-
-
-
-
 
 function checkForValues(event) {
     if (event.target.className === 'save-form'){
@@ -136,16 +131,19 @@ function saveStarred(event) {
     loadIdeas()
 }
 
-function searchBar(event) {
-    event.preventDefault()
-    var value = event.target.value.toLowerCase()
-    searchIdeas = []
-    var currentList = [];
+function updateCurrentList() {
     if (starredButton.innerText === 'Show Starred Ideas'){
         currentList = savedIdeaList;
     } else {
         currentList = favoriteIdeas;
     }
+}
+
+function searchBar(event) {
+    event.preventDefault()
+    var value = event.target.value.toLowerCase()
+    searchIdeas = []
+    updateCurrentList()
     
     for(var i = 0; i < currentList.length;i++) {
         var newTitle = currentList[i].title.toLowerCase()
@@ -164,5 +162,4 @@ function searchBar(event) {
     } else {
         loadIdeas()
     }
-    
 }

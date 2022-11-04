@@ -11,28 +11,28 @@
         <title>IdeaBox</title>
     </head>
     <body>
-            <section class="side-bar">
-                <article class="side-header">
-                    <h1>IdeaBox</h1>
-                </article>
-                <article class="side-star">
-                    <h4>Filter Starred Ideas</h3>
-                    <button class="star-button" id="star-button">Show Starred Ideas</button>
-                </article>
-            </section>
+        <section class="side-bar">
+            <article class="side-header">
+                <h1>IdeaBox</h1>
+            </article>
+            <article class="side-star">
+                <h4>Filter Starred Ideas</h3>
+                <button class="star-button" id="star-button">Show Starred Ideas</button>
+            </article>
+        </section>
         <main class="main-page">
             <section class="top-container">
                 <form class="save-form" id="save-form">
                     <label class="title-label">Title</label>
                     <input class="title-box" id="title-box">
                     <label class="body-label">Body</label>
-                    <input class="body-box" id="body-box">
+                    <textarea class="body-box" id="body-box"></textarea>
                     <button class="save-button" id="save-button">Save</button>
                 </form>
                 <form class="search-form">
-                    <button type='search' class='search-button' id="search-idea"><img src='assets/search.svg' /></button>
-                    <lable for="search-Idea"></lable>
-                    <input type="search" class="search-box" id="search-idea">
+                    <button type="button" class="search-button" id="search-idea"><img src='assets/search.svg' /></button>
+                    <label for="search-Idea"></label>
+                    <input type="search" class="search-box" id="search-idea" placeholder="Search Ideas">
                 </form>
             </section>
             <section class="bottom-container" id="bottom-container"> 
