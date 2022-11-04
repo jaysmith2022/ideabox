@@ -218,7 +218,6 @@ p {
 }
 
 .footer-container {
-    height: 30px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
