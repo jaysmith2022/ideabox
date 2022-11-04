@@ -4,24 +4,19 @@ var bodyInput = document.getElementById('body-box')
 var ideaContainer = document.getElementById('bottom-container')
 var saveForm = document.getElementById('save-form')
 var starredButton = document.getElementById('star-button')
-var showAllButton = document.getElementsByClassName('show-all')
 var searchBox = document.querySelector('.search-box')
 
-var currentIdea;
+var currentIdea
 var savedIdeaList = []
 var favoriteIdeas = []
 var searchIdeas = []
-
+var currentList = []
 
 searchBox.addEventListener('input', searchBar)
 saveForm.addEventListener('mouseover', checkForValues);
 saveButton.addEventListener('click', displayCard)
 ideaContainer.addEventListener('click', updateIdea)
 starredButton.addEventListener('click', saveStarred)
-
-
-
-
 
 function checkForValues(event) {
     if (event.target.className === 'save-form'){
@@ -96,7 +91,6 @@ function deleteIdea(event) {
             favoriteIdeas.splice(i,1)
         }
     }
-
     loadIdeas();
 }
 
@@ -128,6 +122,7 @@ function updateIdea(event) {
 
 function saveStarred(event) {
     event.preventDefault()
+    searchBox.value = ""
     if (starredButton.innerText === 'Show Starred Ideas'){
         starredButton.innerText = 'Show All Ideas'
     } else {
@@ -136,24 +131,35 @@ function saveStarred(event) {
     loadIdeas()
 }
 
+function updateCurrentList() {
+    if (starredButton.innerText === 'Show Starred Ideas'){
+        currentList = savedIdeaList;
+    } else {
+        currentList = favoriteIdeas;
+    }
+}
+
 function searchBar(event) {
     event.preventDefault()
-    var value = event.target.value
+    var value = event.target.value.toLowerCase()
     searchIdeas = []
-    for(var i = 0; i < savedIdeaList.length;i++) {
-        var newTitle = savedIdeaList[i].title
-        // var newBody = savedIdeaList[i].body
-    if (newTitle.toLowerCase().includes(value) && !searchIdeas.includes(savedIdeaList[i]) && searchBox.value) {
-        searchIdeas.push(savedIdeaList[i])
-}   else if (!searchBox.value) {
-        searchIdeas = []
-}
-}
-    if (searchIdeas.length > 0) {
+    updateCurrentList()
+    
+    for(var i = 0; i < currentList.length;i++) {
+        var newTitle = currentList[i].title.toLowerCase()
+        var newBody = currentList[i].body.toLowerCase()
+        if(!searchIdeas.includes(currentList[i]) && searchBox.value){
+            if (newTitle.includes(value) || newBody.includes(value)) {
+                searchIdeas.push(currentList[i])
+            }   
+        }
+    }
+    
+    if (searchBox.value && !searchIdeas.length) {
         saveIdea(searchIdeas)  
-        console.log('1')
+    } else if (searchIdeas.length > 0){
+        saveIdea(searchIdeas)
     } else {
         loadIdeas()
-        console.log('2')
     }
 }
