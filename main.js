@@ -13,7 +13,7 @@ var searchIdeas = []
 var currentList = []
 
 searchBox.addEventListener('input', searchBar)
-saveForm.addEventListener('mouseover', checkForValues);
+saveForm.addEventListener('mouseover', checkForValues)
 saveButton.addEventListener('click', displayCard)
 ideaContainer.addEventListener('click', updateIdea)
 starredButton.addEventListener('click', saveStarred)
@@ -29,7 +29,7 @@ function checkForValues(event) {
 }
 
 function createNewIdea() {
-    var currentIdea = new Idea(titleInput.value, bodyInput.value);
+    var currentIdea = new Idea(titleInput.value, bodyInput.value)
     savedIdeaList.push(currentIdea)
 }
 
@@ -45,7 +45,7 @@ function displayCard(event) {
 function saveIdea(ideas) {
     ideaContainer.innerHTML = ""
     for (var i = 0; i < ideas.length;i++) {
-        var updatedStar = ideas[i].updateIdea(); 
+        var updatedStar = ideas[i].updateIdea()
         ideaContainer.innerHTML = ideaContainer.innerHTML + `<article class="saved-idea">
         <header class="top-header">
         <button class='starred-button' ${ideas[i].star}'><img class="starred-button" id='${ideas[i].id}' src="${updatedStar}" /></button>
@@ -54,19 +54,17 @@ function saveIdea(ideas) {
         <h2>${ideas[i].title}</h2>
         <p>${ideas[i].body}</p>
         <footer class="footer-container">
-        <button class="comment-button"><img src="assets/comment.svg" /></button>
-        <label class="label-text">Comment</label>
         </footer>
-        </article><br>`
+        </article>`
         saveButton.setAttribute('disabled', '')
     }
 }
 
 function loadIdeas() {
     if (starredButton.innerText === 'Show Starred Ideas'){
-        saveIdea(savedIdeaList);
+        saveIdea(savedIdeaList)
     } else {
-        saveIdea(favoriteIdeas);
+        saveIdea(favoriteIdeas)
     }
 }
 
@@ -76,7 +74,7 @@ function deleteFavorite(event) {
             favoriteIdeas.splice(i,1)
         }
     }
-    loadIdeas();
+    loadIdeas()
 }
 
 function deleteIdea(event) {
@@ -91,7 +89,7 @@ function deleteIdea(event) {
             favoriteIdeas.splice(i,1)
         }
     }
-    loadIdeas();
+    loadIdeas()
 }
 
 function updateStar(event) {
@@ -108,7 +106,7 @@ function updateStar(event) {
             }
         }
     }
-    loadIdeas();
+    loadIdeas()
 }
 
 function updateIdea(event) {
@@ -133,9 +131,9 @@ function saveStarred(event) {
 
 function updateCurrentList() {
     if (starredButton.innerText === 'Show Starred Ideas'){
-        currentList = savedIdeaList;
+        currentList = savedIdeaList
     } else {
-        currentList = favoriteIdeas;
+        currentList = favoriteIdeas
     }
 }
 
