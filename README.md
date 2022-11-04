@@ -14,6 +14,10 @@ We created a idea generating application that allows a user to input custom idea
 
 
 
+https://user-images.githubusercontent.com/107894408/200046716-bea40058-1764-4668-a70f-840e396086cd.mp4
+
+
+
 
 ## Context:
 This project was a fun way to test our ability to work with more than one person and to have the work evenly divided while ending with a functional website. We had to think out side the box for some of the iterations as it was similar to work we had done previously, but was not the same. It was a little tricky but in the end we got it to work. 
