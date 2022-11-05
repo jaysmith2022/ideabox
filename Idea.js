@@ -7,7 +7,7 @@ class Idea {
     }
 
     updateIdea() {
-       if (this.star === true) {
+       if (this.star) {
             return "./assets/star-active.svg"
         } else {
             return "./assets/star.svg"
