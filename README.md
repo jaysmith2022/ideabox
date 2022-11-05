@@ -14,7 +14,9 @@ We created a idea generating application that allows a user to input custom idea
 
 
 
-https://user-images.githubusercontent.com/107894408/200046716-bea40058-1764-4668-a70f-840e396086cd.mp4
+
+https://user-images.githubusercontent.com/107894408/200142846-4c081464-69f0-4c40-9db5-efcf4fce3957.mp4
+
 
 
 
